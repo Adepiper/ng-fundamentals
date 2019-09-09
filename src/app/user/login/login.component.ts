@@ -12,9 +12,16 @@ export class LoginComponent implements OnInit {
   userName
   password
   mouseoverLogin
+  loginInvalid = false
   login(formValues){
-   this.authService.loginUser(formValues.userName, formValues.password)
-   this.router.navigate(['events'])
+   this.authService.loginUser(formValues.userName, formValues.password).subscribe(resp => {
+     if (!resp){
+        this.loginInvalid = true
+     } else{
+      this.router.navigate(['events'])
+     }
+   })
+
   }
 
   cancel(){

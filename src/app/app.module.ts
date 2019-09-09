@@ -12,7 +12,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './router';
 import { CreateEventComponent } from './events/create-event/create-event.component';
 import { ErrorsComponent } from './errors/errors/errors.component';
-import { EventRouteActivatorService } from './events/event-details/event-route-activator.service';
+
 import { EventListResolverService } from './events/event-list/event-list-resolver.service';
 import { IEvent} from './events/event.model'
 import { AuthServiceService } from './user/auth-service.service';
@@ -28,6 +28,8 @@ import { ModalTriggerDirective } from './common/modal-trigger.directive';
 import { UpvoteComponent } from './events/upvote/upvote.component';
 import { VoterServiceService } from './events/session-list/voter-service.service';
 import { LocationValidatorDirective } from './events/event-details/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { EventsResolverService } from './events/events-resolver.service';
  let toastr: Toastr = window['toastr']
  let jQuery = window['$']
 
@@ -55,10 +57,11 @@ import { LocationValidatorDirective } from './events/event-details/location-vali
 
   ],
   providers: [EventServiceComponent,
-    EventRouteActivatorService,
+
     EventListResolverService,
     AuthServiceService,
     VoterServiceService,
+    EventsResolverService,
     {provide: TOASTR_TOKEN, useValue: toastr},
     {provide: JQ_TOKEN, useValue: jQuery},
 
@@ -67,7 +70,8 @@ import { LocationValidatorDirective } from './events/event-details/location-vali
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
 
   bootstrap: [EventsAppComponent]

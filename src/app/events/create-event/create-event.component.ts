@@ -12,9 +12,11 @@ export class CreateEventComponent implements OnInit {
   isDirty:boolean = true
   constructor(private router:Router, private eventService: EventServiceComponent) { }
   saveEvent(formValues){
-    this.eventService.saveEvent(formValues)
-    this.isDirty = false
-    this.router.navigate(['/events'])
+    this.eventService.saveEvent(formValues).subscribe(()=>{
+      this.isDirty = false
+      this.router.navigate(['/events'])
+    })
+
   }
 
   cancel(){
