@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
 import { userRoutes } from './user.route';
 import { LoginComponent } from './login/login.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 

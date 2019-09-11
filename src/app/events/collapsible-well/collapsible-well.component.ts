@@ -6,15 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./collapsible-well.component.css']
 })
 export class CollapsibleWellComponent implements OnInit {
-  @Input() title: String
-  visible: boolean = true;
+  @Input() title: String;
+  visible = true;
   constructor() { }
 
   ngOnInit() {
   }
 
-  toggleContent(){
-    this.visible = !this.visible
+  toggleContent() {
+    this.visible = !this.visible;
   }
 
 }

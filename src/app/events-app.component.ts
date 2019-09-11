@@ -8,9 +8,9 @@ import { AuthServiceService } from './user/auth-service.service';
   <router-outlet></router-outlet>`
 })
 export class EventsAppComponent {
-  constructor(private auth: AuthServiceService){
+  constructor(private auth: AuthServiceService) {
   }
-  ngOnInit (){
+  ngOnInit() {
     this.auth.checkAuthenticationStatus();
   }
 }

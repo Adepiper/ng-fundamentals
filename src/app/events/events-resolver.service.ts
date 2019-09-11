@@ -7,9 +7,9 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 })
 export class EventsResolverService {
 
-  constructor(private eventService :EventServiceComponent) { }
+  constructor(private eventService: EventServiceComponent) { }
 
-  resolve(route: ActivatedRouteSnapshot){
-    return this.eventService.getEvent(route.params['id'])
+  resolve(route: ActivatedRouteSnapshot) {
+    return this.eventService.getEvent(route.params.id);
   }
 }

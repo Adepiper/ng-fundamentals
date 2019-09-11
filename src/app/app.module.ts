@@ -14,7 +14,7 @@ import { CreateEventComponent } from './events/create-event/create-event.compone
 import { ErrorsComponent } from './errors/errors/errors.component';
 
 import { EventListResolverService } from './events/event-list/event-list-resolver.service';
-import { IEvent} from './events/event.model'
+import { IEvent} from './events/event.model';
 import { AuthServiceService } from './user/auth-service.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateSessionComponent } from './events/create-session/create-session.component';
@@ -30,8 +30,8 @@ import { VoterServiceService } from './events/session-list/voter-service.service
 import { LocationValidatorDirective } from './events/event-details/location-validator.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsResolverService } from './events/events-resolver.service';
- let toastr: Toastr = window['toastr']
- let jQuery = window['$']
+const toastr: Toastr = window['toastr'];
+const jQuery = window['$'];
 
 
 
@@ -55,9 +55,11 @@ import { EventsResolverService } from './events/events-resolver.service';
     LocationValidatorDirective,
 
 
-  ],
-  providers: [EventServiceComponent,
 
+
+  ],
+  providers: [
+    EventServiceComponent,
     EventListResolverService,
     AuthServiceService,
     VoterServiceService,
@@ -77,8 +79,9 @@ import { EventsResolverService } from './events/events-resolver.service';
   bootstrap: [EventsAppComponent]
 })
 export class AppModule { }
-export function checkDirtyState(component: CreateEventComponent){
- if (component.isDirty)
- return window.confirm('You have not saved this event, do you really want to cancel?')
- return true
+export function checkDirtyState(component: CreateEventComponent) {
+ if (component.isDirty) {
+ return window.confirm('You have not saved this event, do you really want to cancel?');
+ }
+ return true;
 }

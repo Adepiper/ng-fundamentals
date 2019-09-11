@@ -9,12 +9,12 @@ import { IEvent } from '../event.model';
 })
 export class EventThumbnailComponent implements OnInit {
 
- @Input() event : IEvent
-  getStartTimeClass(): any{
-  if (this.event && this.event.time === '8:00 am')
-    return {color: '#003300', 'font-weight': 'bold'}
-    else{
-      return {}
+ @Input() event: IEvent;
+  getStartTimeClass(): any {
+  if (this.event && this.event.time === '8:00 am') {
+    return {color: '#003300', 'font-weight': 'bold'};
+  } else {
+      return {};
     }
   }
   constructor() { }

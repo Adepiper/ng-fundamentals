@@ -11,51 +11,51 @@ import { VoterServiceService } from './voter-service.service';
   styleUrls: ['./session-list.component.css']
 })
 export class SessionListComponent implements OnInit, OnChanges {
-  @Input() sessions:ISession[]
+  @Input() sessions: ISession[];
   @Input()filterBy: string;
   @Input() sortBy: string;
-  @Input() eventId: number
-  visibleSessions: ISession[] = []
+  @Input() eventId: number;
+  visibleSessions: ISession[] = [];
 
-  constructor(private auth: AuthServiceService, private voterService: VoterServiceService) { }
+  constructor(public auth: AuthServiceService, private voterService: VoterServiceService) { }
 
   ngOnInit() {
   }
-  ngOnChanges(){
-    if(this.sessions){
-      this.filterSessions(this.filterBy)
-      this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc)
+  ngOnChanges() {
+    if (this.sessions) {
+      this.filterSessions(this.filterBy);
+      this.sortBy === 'name' ? this.visibleSessions.sort(sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc);
     }
   }
-  toggleVote(session: ISession){
-    if(this.userHasVoted(session)){
-      this.voterService.deleteVoter(this.eventId, session, this.auth.currentUser.userName)
+  toggleVote(session: ISession) {
+    if (this.userHasVoted(session)) {
+      this.voterService.deleteVoter(this.eventId, session, this.auth.currentUser.userName);
     } else {
-      this.voterService.addVoter(this.eventId, session,this.auth.currentUser.userName)
+      this.voterService.addVoter(this.eventId, session, this.auth.currentUser.userName);
     }
-    if(this.sortBy === 'votes')
-    this.visibleSessions.sort(sortByVotesDesc)
-  }
-  userHasVoted(session: ISession){
-    return this.voterService.userHasVoted(session, this.auth.currentUser.userName)
-  }
-  filterSessions(filter){
-    if(filter === 'all'){
-      this.visibleSessions = this.sessions.slice(0)
-    } else{
-      this.visibleSessions = this.sessions.filter(session=> {
-        return session.level.toLocaleLowerCase()=== filter;
-      })
+    if (this.sortBy === 'votes') {
+    this.visibleSessions.sort(sortByVotesDesc);
     }
-    if(this.sortBy === 'votes')
-    this.visibleSessions.sort(sortByVotesDesc)
+  }
+  userHasVoted(session: ISession) {
+    return this.voterService.userHasVoted(session, this.auth.currentUser.userName);
+  }
+  filterSessions(filter) {
+    if (filter === 'all') {
+      this.visibleSessions = this.sessions.slice(0);
+    } else {
+      this.visibleSessions = this.sessions.filter(session => {
+        return session.level.toLocaleLowerCase() === filter;
+      });
+    }
+    if (this.sortBy === 'votes') {
+    this.visibleSessions.sort(sortByVotesDesc);
+    }
   }
 }
-function sortByNameAsc(s1: ISession, s2:ISession){
-  if(s1.name > s2.name) return 1
-  else if(s1.name === s2.name) return 0
-  else return -1
+function sortByNameAsc(s1: ISession, s2: ISession) {
+  if (s1.name > s2.name) { return 1; } else if (s1.name === s2.name) { return 0; } else { return -1; }
 }
- function sortByVotesDesc(s1: ISession, s2: ISession){
- return s2.voters.length - s1.voters.length
+function sortByVotesDesc(s1: ISession, s2: ISession) {
+ return s2.voters.length - s1.voters.length;
  }

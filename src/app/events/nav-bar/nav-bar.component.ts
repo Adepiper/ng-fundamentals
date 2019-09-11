@@ -11,16 +11,16 @@ import { EventServiceComponent } from '../event-service/event-service.component'
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent  {
-searchTerm: string = '';
-foundSessions: ISession[]
-  constructor(public auth:AuthServiceService, private eventService:EventServiceComponent) { }
+searchTerm = '';
+foundSessions: ISession[];
+  constructor(public auth: AuthServiceService, private eventService: EventServiceComponent) { }
 
 
-  searchSessions(searchTerm){
+  searchSessions(searchTerm) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
-      this.foundSessions = sessions
+      this.foundSessions = sessions;
 
-    })
+    });
   }
 
 }
